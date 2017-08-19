@@ -64,6 +64,16 @@
 		return t;
 	};
 
+	// # ANSI escape code 文字を考慮した文字列化
+	// @return 文字列化した文字キャンバス。
+	CharCanvas.prototype.toStringZ = function() {
+		var chunks = [];
+		for (var i = 0; i < this.canvas.length / this.w; i += 1) {
+			chunks.push(this.canvas.slice(this.w * i, this.w * (i + 1)).join(''));
+		}
+		return chunks.join('\n').replace(/\t/g, '');
+	};
+
 	// # 1マス書く
 	// @arg: {
 	//    x: 'x座標'
